@@ -10,6 +10,7 @@ var pig1,pig2;
 var log1,log2,log3,log4;
 var bird
 var backgroundImg
+var platform
 
 function preload() {
    backgroundImg=loadImage("sprites/bg.png");
@@ -55,6 +56,8 @@ function setup() {
 
   bird = new Bird(100,100)
 
+  platform = new Ground(350,535,700,450)
+
   //RADIANS - DEGREES
   //180 degrees = PI radians 
   //90 = PI/2
@@ -82,5 +85,6 @@ function draw() {
   log3.display();
   log4.display();
   bird.display();
+  platform.display();
 
 }
