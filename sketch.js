@@ -10,12 +10,14 @@ var ground;
 var pig1,pig2;
 var log1,log2,log3,log4;
 var bird
-var backgroundImg
-var platform
-var slingshot
+var backgroundImg;
+var platform;
+var slingshot,ssling1,sling2;
 
 function preload() {
    backgroundImg=loadImage("sprites/bg.png");
+   sling1=loadImage("sprites/sling1.png");
+   sling2=loadImage("sprites/sling2.png");
 }
 
 
@@ -46,21 +48,21 @@ function setup() {
    
   pig1 = new Pig(800,320);
 
-  pig2 = new Pig(800,250)  
+  pig2 = new Pig(800,250); 
 
   log1 = new Log(800,280,260,PI/2);
 
-  log2 = new Log(800,180,260,PI/2)
+  log2 = new Log(800,180,260,PI/2);
 
-  log3 = new Log(750,130,135,PI/6)
+  log3 = new Log(750,130,135,PI/6);
 
-  log4 = new Log(850,130,135,PI/-6)
+  log4 = new Log(850,130,135,PI/-6);
 
-  bird = new Bird(100,100)
+  bird = new Bird(230,60);
 
-  platform = new Ground(150,280,300,200)
+  platform = new Ground(150,280,300,200);
 
-  slingshot = new Slingshot(bird.body,{x: 160,y: 70})
+  slingshot = new Slingshot(bird.body,{x: 230,y: 60});
 
   //RADIANS - DEGREES
   //180 degrees = PI radians 
@@ -76,6 +78,8 @@ function draw() {
   background(backgroundImg);  
   rectMode(CENTER);
 
+  //text(mouseX+","+mouseY,mouseX,mouseY);
+
   box1.display();
   box2.display();
   box3.display();
@@ -88,14 +92,15 @@ function draw() {
   log2.display();
   log3.display();
   log4.display();
+  image(sling1,240,110,50,140);
   bird.display();
-  platform.display();
   slingshot.display();
+  image(sling2,205,80,50,80);
+  platform.display();
 }
 
 function mouseDragged(){
   Matter.Body.setPosition(bird.body,{x: mouseX, y: mouseY});
-
 }
 
 function mouseReleased(){

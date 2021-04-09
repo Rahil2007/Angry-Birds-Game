@@ -5,7 +5,8 @@ class BaseClass {
         this.image = loadImage("sprites/base.png");
         var options = {
             restitution: 0.5,
-            friction: 3
+            friction: 3,
+            density: 0.5
         }
         this.body = Bodies.rectangle(x,y,this.width,this.height,options);
         World.add(world,this.body);
