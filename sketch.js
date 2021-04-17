@@ -23,8 +23,8 @@ function preload() {
 
 function setup() {
   createCanvas(1200,400);
-  pixelDensity(0.5)
-  console.log(displayDensity());
+  //pixelDensity(0.5)
+  //console.log(displayDensity());
 
   //create an engine
   engine = Engine.create();
@@ -34,25 +34,25 @@ function setup() {
   
 
   // creating a box from the class
-  box1 = new Box(700,320,60,60);
+  box1 = new Box(700,350,60,60);
 
-  box2 = new Box(900,320,60,60);
+  box2 = new Box(900,350,60,60);
 
-  box3 = new Box(700,220,60,60);
+  box3 = new Box(700,270,60,60);
   
-  box4 = new Box(900,220,60,60);
+  box4 = new Box(900,270,60,60);
 
-  box5 = new Box(800,140,60,60)
+  box5 = new Box(800,140,60,60);
 
   ground = new Ground(600,390,1200,20);
    
-  pig1 = new Pig(800,320);
+  pig1 = new Pig(800,355);
 
-  pig2 = new Pig(800,250); 
+  pig2 = new Pig(800,275); 
 
-  log1 = new Log(800,280,260,PI/2);
+  log1 = new Log(800,310,260,PI/2);
 
-  log2 = new Log(800,180,260,PI/2);
+  log2 = new Log(800,230,260,PI/2);
 
   log3 = new Log(750,130,135,PI/6);
 
@@ -104,5 +104,11 @@ function mouseDragged(){
 }
 
 function mouseReleased(){
-  slingshot.fly()
+  slingshot.fly();
+}
+
+function keyPressed(){
+    if(keyCode===32){
+      slingshot.attach(bird.body)
+    }
 }
