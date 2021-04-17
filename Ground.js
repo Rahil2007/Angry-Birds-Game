@@ -5,7 +5,8 @@ class Ground{
 
     var g_options = {
         isStatic : true,
-        restitution : 0.2
+        restitution : 0.2,
+        friction: 7
     }
     this.body=Bodies.rectangle(x,y,this.width,this.height,g_options)
     World.add(world,this.body)
