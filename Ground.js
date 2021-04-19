@@ -10,7 +10,7 @@ class Ground{
     }
     this.body=Bodies.rectangle(x,y,this.width,this.height,g_options)
     World.add(world,this.body)
-    console.log(this.body)
+    //console.log(this.body)
   } 
 
   display(){
