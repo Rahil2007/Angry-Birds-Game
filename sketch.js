@@ -13,6 +13,8 @@ var bird
 var backgroundImg;
 var platform;
 var slingshot,ssling1,sling2;
+var bgImage;
+var score = 0;
 var gameState
 var gameState = "OnSling"
 
@@ -55,11 +57,21 @@ var gameState = "OnSling"
 
    arr3.pop()
    console.log(arr3)
+
+   // JSON - JavaScript Object Notation
+   var obj = {
+     position: {x:0,y:0}
+   }
+
+   console.log(obj.position.x);
+
+   //API -  Application Pogramming Interface
    
 function preload() {
    backgroundImg=loadImage("sprites/bg.png");
    sling1=loadImage("sprites/sling1.png");
    sling2=loadImage("sprites/sling2.png");
+   getBgImage();
 }
 
 
@@ -117,11 +129,20 @@ function setup() {
 }
 
 function draw() {
-  background(backgroundImg);  
+  if(bgImage){
+   background(bgImage);  
+  }else {
+    background("white");
+  }
   rectMode(CENTER);
 
   //text(mouseX+","+mouseY,mouseX,mouseY);
+  fill("black");
+  textSize(32);
+  text("Score: " + score ,20,50 );
 
+  pig1.score();
+  pig2.score();
   box1.display();
   box2.display();
   box3.display();
@@ -158,4 +179,20 @@ function keyPressed(){
       bird.trail = [];
       gameState = "OnSling";
     }
+}
+
+async function getBgImage(){
+  var response = await fetch("http://worldtimeapi.org/api/ip");
+  var responseJSON = await response.json()
+  var dateTime = responseJSON.datetime;
+  var hour = dateTime.slice(11,13);
+  console.log(hour);
+  if(hour>=6 && hour <18){
+    bg = "sprites/bg.png"
+  }else {
+    bg = "sprites/NightBackground.jpg"
+  }
+
+  bgImage = loadImage(bg);
+  
 }
