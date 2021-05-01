@@ -122,6 +122,7 @@ function setup() {
   //180 degrees = PI radians 
   //90 = PI/2
 
+ 
 
   //run the engine
   Engine.run(engine);
@@ -140,6 +141,10 @@ function draw() {
   fill("black");
   textSize(32);
   text("Score: " + score ,20,50 );
+  textSize(26);
+  text("Press Space To Reset The Bird" , 500 , 50 );
+  text("Press R To Play The Game Again" , 490 , 80 )
+  
 
   pig1.score();
   pig2.score();
@@ -163,7 +168,7 @@ function draw() {
 }
 
 function mouseDragged(){
-  if(gameState === "OnSling"){
+  if(gameState === "OnSling" && bird.body.position.x < 250 && bird.body.position.x > 210){
   Matter.Body.setPosition(bird.body,{x: mouseX, y: mouseY});
   }
 }
@@ -175,9 +180,17 @@ function mouseReleased(){
 
 function keyPressed(){
     if(keyCode===32){
+      Matter.Body.setPosition(bird.body,{x: 230 ,y: 60})
+      Matter.Body.setVelocity(bird.body,{x: 0, y: 0});
+      Matter.Body.setAngle(bird.body,0);
+      Matter.Body.setAngularVelocity(bird.body,0);
       slingshot.attach(bird.body);
       bird.trail = [];
       gameState = "OnSling";
+    }
+
+    if(keyCode === 82){
+      window.location.reload();
     }
 }
 
@@ -196,3 +209,20 @@ async function getBgImage(){
   bgImage = loadImage(bg);
   
 }
+
+
+/*
+  Debugging tips and tricks :
+  DON'T PANIC - Check the console!
+  Most common errors -
+  1. Typos - spelled a variable or function name wrong.
+  2. Incorrect use of a function - not giving the right parameters.
+  3. Using variables out of scope - using local variables globally.
+
+  For bugs that do not show up on the console - 
+  1.Comment out sections of code - to figure which part is causing problem.
+  2.Print variables on your console.
+  3.Print messages on your console.
+
+  Always write clean code. 
+  */

@@ -14,13 +14,19 @@ class Bird extends BaseClass{
     
     display(){
         super.display();
-        if(this.body.speed>10 && this.body.position.x > 250){
-        var position = [this.body.position.x,this.body.position.y];
-        this.trail.push(position);
+        if(this.body.speed>8 && this.body.position.x > 250 && gameState === "launch"){
+            var position = [this.body.position.x,this.body.position.y];
+            this.trail.push(position);
         }
         
         for(var i = 0; i<this.trail.length; i++){
             image(this.smokeImage,this.trail[i][0],this.trail[i][1])
+        }
+
+        if(this.body.position.x <= 230 && gameState === "OnSling"){
+            Matter.Body.setAngle(this.body,0);
+        }else if(this.body.position.x > 230 && gameState === "OnSling"){
+            Matter.Body.setAngle(this.body,PI);
         }
         
         //console.log(this.trail)
